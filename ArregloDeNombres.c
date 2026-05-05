@@ -7,7 +7,8 @@
 
 void MostrarPersonas(char *V[]);
 // void MostrarPersonas1(char **V[],int N);
-void BuscarNombre(char *V[], char palabra[]);
+void BuscarNombre_id(char *V[], int id);
+void BuscarNombre_palabra(char *V[], char palabra[]);
 
 // VERSION PUNTERO SIMPLE (tamaño estático de vector principal (5) y tamaño de cada elemento (nombre) asignado dinámicamente)
 int main(){
@@ -27,12 +28,17 @@ int main(){
 
     MostrarPersonas(V);
     
+    printf("Ingrese ID del nombre a buscar: ");
+    scanf(" %d",&id);
+    printf("\n");
+    BuscarNombre_id(V,id);
+    
     printf("Ingrese palabra clave a buscar: ");
     fflush(stdin);
     gets(buffer);
     printf("\n");
     
-    BuscarNombre(V,buffer);
+    BuscarNombre_palabra(V,buffer);
     
     //  LIBERO NOMBRES ALMACENADOS DINÁMICAMENTE
     for (int i = 0; i < 5; i++) {
@@ -54,9 +60,9 @@ int main(){
 
 //     for (int i = 0; i < N; i++)
 //     {
-    //         printf("Ingrese el nombre: \n");
-    //         fflush(stdin);
-    //         gets(buffer);
+//             printf("Ingrese el nombre: \n");
+//             fflush(stdin);
+//             gets(buffer);
 
 //         V[i] = (char *)malloc((strlen(buffer)+1)*sizeof(char)); 
 //         strcpy(V[i],buffer);
@@ -94,7 +100,28 @@ void MostrarPersonas(char *V[]){
 //     }  
 // }
 
-void BuscarNombre(char *V[], char palabra[]){
+
+void BuscarNombre_id(char *V[], int id){
+    int bandera = 0;
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (i == id)
+        {
+            printf("PERSONA %d: ",id);
+            puts(V[id]);
+
+            bandera = 1;
+        }
+    }
+
+    if (bandera == 0)
+    {
+        printf("No se encontro el valor buscado\n");
+    }
+}
+
+void BuscarNombre_palabra(char *V[], char palabra[]){
     int bandera = 0;
     for (int i = 0; i < 5; i++)
     {
