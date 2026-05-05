@@ -15,30 +15,53 @@ int main(){
     char *V[5], buffer[MAX];
     int id;
     
+    printf(".\n");
+    printf(".\n");
+    printf(".\n");
+    printf("INICIANDO PROGRAMA...\n");
+    printf("| CARGA DE NOMBRES |\n");
+    
     for (int i = 0; i < 5; i++)
     {
-        printf("Ingrese el nombre: ");
+        printf("Nombre %d: ",i+1);
         fflush(stdin);
         gets(buffer);
         printf("\n");
-
+        
         V[i] = (char *)malloc((strlen(buffer)+1)*sizeof(char)); 
         strcpy(V[i],buffer);
     }
-
+    
+    printf("| NOMBRES CARGADOS |\n");
     MostrarPersonas(V);
     
-    printf("Ingrese ID del nombre a buscar: ");
-    scanf(" %d",&id);
-    printf("\n");
-    BuscarNombre_id(V,id);
+    int eleccion;
+    do
+    {
+        printf("| COMO DESEA BUSCAR? 1=ID 0=PALABRA CLAVE |\n");
+        scanf("%d",&eleccion);
+        
+        if (eleccion != 0 && eleccion != 1)
+        {
+            printf("Ingrese 0 o 1.\n");
+        }
+        
+    } while (eleccion != 0 && eleccion != 1);
     
-    printf("Ingrese palabra clave a buscar: ");
-    fflush(stdin);
-    gets(buffer);
-    printf("\n");
-    
-    BuscarNombre_palabra(V,buffer);
+    if (eleccion == 1)
+    {
+        printf("Ingrese ID del nombre a buscar: ");
+        scanf(" %d",&id);
+        printf("\n");
+        BuscarNombre_id(V,id);
+    } else
+    {
+        printf("Ingrese palabra clave a buscar: ");
+        fflush(stdin);
+        gets(buffer);
+        printf("\n");
+        BuscarNombre_palabra(V,buffer);
+    }
     
     //  LIBERO NOMBRES ALMACENADOS DINÁMICAMENTE
     for (int i = 0; i < 5; i++) {
@@ -138,5 +161,4 @@ void BuscarNombre_palabra(char *V[], char palabra[]){
     {
         printf("-1\n");
     }
-    
 }
