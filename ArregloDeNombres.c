@@ -25,7 +25,7 @@ int main(){
     {
         printf("Nombre %d: ",i+1);
         fflush(stdin);
-        gets(buffer);
+        fgets(buffer, sizeof(buffer), stdin);
         printf("\n");
         
         V[i] = (char *)malloc((strlen(buffer)+1)*sizeof(char)); 
@@ -58,7 +58,7 @@ int main(){
     {
         printf("Ingrese palabra clave a buscar: ");
         fflush(stdin);
-        gets(buffer);
+       fgets(buffer, sizeof(buffer), stdin);
         printf("\n");
         BuscarNombre_palabra(V,buffer);
     }
@@ -69,7 +69,7 @@ int main(){
 }
 }
 
-// VERSION CON PUNTERO DOBLE (tamaño de vector principal y de cada elemento (nombre) asignado dinámicamente)
+// PUNTO 4) - VERSION CON PUNTERO DOBLE (tamaño de vector principal y de cada elemento (nombre) asignado dinámicamente)
 // int main(){
 //     char **V,buffer[MAX];
 //     int N;
